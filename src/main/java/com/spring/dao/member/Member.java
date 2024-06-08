@@ -1,4 +1,4 @@
-package com.spring.domain.member;
+package com.spring.dao.member;
 
 import lombok.Data;
 

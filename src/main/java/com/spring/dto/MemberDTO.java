@@ -1,6 +1,6 @@
 package com.spring.dto;
 
-import com.spring.domain.member.Member;
+import com.spring.dao.member.Member;
 
 import java.util.List;
 import java.util.Optional;

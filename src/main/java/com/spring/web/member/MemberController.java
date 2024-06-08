@@ -1,6 +1,6 @@
 package com.spring.web.member;
 
-import com.spring.domain.member.Member;
+import com.spring.dao.member.Member;
 import com.spring.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

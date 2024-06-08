@@ -1,4 +1,4 @@
-package com.spring.domain.member;
+package com.spring.dao.member;
 
 import com.spring.dto.MemberDTOImpl;
 import org.junit.jupiter.api.AfterEach;

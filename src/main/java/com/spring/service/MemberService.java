@@ -1,10 +1,8 @@
 package com.spring.service;
 
-import com.spring.domain.member.Member;
+import com.spring.dao.member.Member;
 import com.spring.dto.MemberDTO;
-import com.spring.dto.MemberDTOImpl;
 import lombok.RequiredArgsConstructor;
-import org.eclipse.tags.shaded.org.apache.bcel.generic.ANEWARRAY;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

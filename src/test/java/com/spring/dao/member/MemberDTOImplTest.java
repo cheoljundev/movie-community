@@ -1,17 +1,18 @@
 package com.spring.dao.member;
 
-import com.spring.dto.MemberDTOImpl;
+import com.spring.dto.MemberDTO;
+import com.spring.dto.MemoryMemberDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class MemberDTOImplTest {
-    MemberDTOImpl memberDTO = new MemberDTOImpl();
+    MemberDTO memberDTO = new MemoryMemberDTO();
 
     @AfterEach
     void afterEach() {
-        MemberDTOImpl.store.clear();
+        MemoryMemberDTO.store.clear();
     }
 
     @Test

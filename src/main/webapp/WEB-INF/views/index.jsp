@@ -1,5 +1,3 @@
-<%@ page import="com.spring.dao.post.Post" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/layout/header.jsp">
@@ -65,25 +63,14 @@
                 <th scope="col">작성일</th>
             </tr>
             </thead>
-            <tbody>
-            <%
-                List<Post> posts = (List<Post>) request.getAttribute("posts");
-                int startIndex = (int) request.getAttribute("startIndex");
-                int endIndex = (int) request.getAttribute("endIndex");
-
-                for (int i = startIndex; i <= endIndex; i++) {
-                    Post post = posts.get(i);
-            %>
-            <tr>
-                <td><%=post.getId()%></td>
-                <td><a href="post/<%=post.getId()%>"><%=post.getTitle()%></a></td>
-                <td><%=post.getWriter().getName()%></td>
-                <td><%=post.getDate()%></td>
-            </tr>
-            <%
-                }
-            %>
-            </tbody>
+            <c:forEach var="post" items="${posts}">
+                <tr>
+                    <td>${post.id}</td>
+                    <td><a href="post/${post.id}">${post.title}</a></td>
+                    <td>${post.writer.name}</td>
+                    <td>${post.date}</td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
     <nav aria-label="Page navigation example">

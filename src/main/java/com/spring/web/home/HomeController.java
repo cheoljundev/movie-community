@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,29 +23,12 @@ public class HomeController {
     @GetMapping("/")
     public String index(@RequestParam(value = "page", required = false) Integer page, Model model) {
 
-        if (page == null){
-            page = 1;
-        }
+        int pages = postService.pages();
 
-        List<Post> posts = postService.findAll();
-        final int MAX_VIEW = 10;
-        int pages = postService.pages(MAX_VIEW);
+        List<Post> posts = postService.findView(page);
 
         model.addAttribute("posts", posts);
         model.addAttribute("pages", pages);
-
-        int startIndex = (page - 1) * MAX_VIEW + 1;
-        int endIndex = page * MAX_VIEW;
-
-        if (posts.size() <= endIndex) {
-            endIndex = posts.size()-1;
-        }
-
-        model.addAttribute("startIndex", startIndex);
-        model.addAttribute("endIndex", endIndex);
-
-        log.info("posts ={}", posts);
-        log.info("start={}, end={}", startIndex, endIndex);
 
         return "index";
     }

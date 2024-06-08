@@ -2,6 +2,7 @@
 <style>
     /* 푸터 스타일링 */
     footer {
+        margin-top: 100px;
         background-color: #343a40;
         color: #fff;
         padding: 20px 0;

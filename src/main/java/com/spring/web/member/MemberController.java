@@ -4,6 +4,8 @@ import com.spring.dao.member.Member;
 import com.spring.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -19,7 +21,12 @@ public class MemberController {
     }
 
     @PostMapping("/join")
-    public String join(@ModelAttribute("user") Member member) {
+    public String join(@Validated @ModelAttribute("user") Member member, BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            return "member/joinForm";
+        }
+
         memberService.save(member);
         return "member/joinResult";
     }

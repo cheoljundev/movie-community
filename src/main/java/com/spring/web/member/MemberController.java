@@ -15,13 +15,12 @@ public class MemberController {
 
     @GetMapping("/join")
     public String joinForm(@ModelAttribute("user") Member member) {
-        return "join";
+        return "member/join";
     }
 
     @PostMapping("/join")
-    @ResponseBody
     public String join(@ModelAttribute("user") Member member) {
         memberService.save(member);
-        return "OK";
+        return "member/joinResult";
     }
 }

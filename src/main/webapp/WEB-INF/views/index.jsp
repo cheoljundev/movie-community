@@ -4,53 +4,13 @@
     <jsp:param name="title" value="영화리뷰 커뮤니티"/>
 </jsp:include>
 
-<style>
-    .table-hover tbody tr:hover {
-        background-color: #f1f1f1;
-    }
-    .table a {
-        color: #007bff;
-        text-decoration: none;
-    }
-    .table a:hover {
-        color: #0056b3;
-        text-decoration: underline;
-    }
-    .pagination .page-item.active .page-link {
-        background-color: #007bff;
-        border-color: #007bff;
-    }
-    .pagination .page-link {
-        color: #007bff;
-    }
-    .pagination .page-link:hover {
-        color: #0056b3;
-    }
-    .table {
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    .thead-custom th {
-        background-color: #6c757d;
-        color: #fff;
-        text-align: center;
-        padding: 15px;
-        font-size: 16px;
-        border-top: none;
-    }
-    .table-bordered th, .table-bordered td {
-        border: 1px solid #dee2e6;
-    }
-    .table-bordered tbody td {
-        text-align: center;
-        vertical-align: middle;
-    }
-    .table-responsive {
-        border-radius: 10px;
-        overflow: hidden;
-    }
-</style>
-
-안녕하세요.
-
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>안녕하세요 ! 영화리뷰 커뮤니티입니다.</h1>
+            <p class="lead">영화 리뷰를 나누고 공유할 수 있는 커뮤니티입니다.</p>
+            <a class="btn btn-primary btn-lg" href="/board" role="button">게시판 바로가기</a>
+        </div>
+    </div>
+</div>
 <%@include file="/WEB-INF/layout/footer.jsp"%>

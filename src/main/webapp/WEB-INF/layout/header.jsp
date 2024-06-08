@@ -30,6 +30,7 @@
                         </li>
                     </c:when>
                 </c:choose>
+                <a class="nav-link" href="/board">게시판</a>
             </ul>
         </div>
     </div>

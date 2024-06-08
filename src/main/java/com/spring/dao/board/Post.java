@@ -1,4 +1,4 @@
-package com.spring.dao.post;
+package com.spring.dao.board;
 
 import com.spring.dao.member.Member;
 import lombok.Data;

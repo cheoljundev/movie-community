@@ -51,53 +51,6 @@
     }
 </style>
 
-<div class="container mt-5">
-    <h2 class="mb-4 text-center">영화 리뷰</h2>
-    <div class="table-responsive">
-        <table class="table table-hover table-bordered">
-            <thead class="thead-custom">
-            <tr>
-                <th scope="col">번호</th>
-                <th scope="col">제목</th>
-                <th scope="col">작성자</th>
-                <th scope="col">작성일</th>
-            </tr>
-            </thead>
-            <c:forEach var="post" items="${posts}">
-                <tr>
-                    <td>${post.id}</td>
-                    <td><a href="post/${post.id}">${post.title}</a></td>
-                    <td>${post.writer.name}</td>
-                    <td>${post.date}</td>
-                </tr>
-            </c:forEach>
-        </table>
-    </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
-            </li>
-            <c:forEach begin="1" end="${pages}" var="pageNumber">
-                <li class="page-item">
-                    <c:url value="." var="pageLink">
-                        <c:param name="page" value="${pageNumber}"/>
-                    </c:url>
-                    <c:choose>
-                        <c:when test="${pageNumber == currentPage}">
-                            <span class="page-link">${pageNumber}</span>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="page-link" href="${pageLink}">${pageNumber}</a>
-                        </c:otherwise>
-                    </c:choose>
-                </li>
-            </c:forEach>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a></li>
-            </li>
-        </ul>
-    </nav>
-</div>
+안녕하세요.
 
 <%@include file="/WEB-INF/layout/footer.jsp"%>

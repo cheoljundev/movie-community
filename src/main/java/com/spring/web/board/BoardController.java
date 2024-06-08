@@ -19,8 +19,11 @@ public class BoardController {
     @GetMapping
     public String list(@RequestParam(value = "page", required = false) Integer page, Model model) {
 
-        List<Post> posts = boardService.findView(page);
+        if (page == null) {
+            page = 1;
+        }
 
+        List<Post> posts = boardService.findView(page);
         int pages = boardService.pages();
         int min = boardService.minPageLimit(page);
         int max = boardService.maxPageLimit(min);

@@ -39,4 +39,9 @@ public class MemoryPostDTO implements PostDTO{
     public List<Post> findAll() {
         return new ArrayList<>(store.values());
     }
+
+    @Override
+    public int pages(int maxView) {
+        return (int) Math.ceil((double)findAll().size() / maxView);
+    }
 }

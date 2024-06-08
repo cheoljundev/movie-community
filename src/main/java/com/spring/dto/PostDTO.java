@@ -11,4 +11,6 @@ public interface PostDTO {
     Post findById(Integer id);
 
     List<Post> findAll();
+
+    int pages(int maxView);
 }

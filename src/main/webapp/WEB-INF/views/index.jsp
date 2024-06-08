@@ -1,3 +1,5 @@
+<%@ page import="com.spring.dao.post.Post" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="/WEB-INF/layout/header.jsp">
@@ -64,15 +66,23 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="post" items="${posts}">
-                <tr>
-                    <td>${post.id}</td>
-                    <td><a href="post/${post.id}">${post.title}</a></td>
-                    <td>${post.writer.name}</td>
-                    <td>${post.date}</td>
-                </tr>
-            </c:forEach>
-            <!-- 다른 게시물들 -->
+            <%
+                List<Post> posts = (List<Post>) request.getAttribute("posts");
+                int startIndex = (int) request.getAttribute("startIndex");
+                int endIndex = (int) request.getAttribute("endIndex");
+
+                for (int i = startIndex; i <= endIndex; i++) {
+                    Post post = posts.get(i);
+            %>
+            <tr>
+                <td><%=post.getId()%></td>
+                <td><a href="post/<%=post.getId()%>"><%=post.getTitle()%></a></td>
+                <td><%=post.getWriter().getName()%></td>
+                <td><%=post.getDate()%></td>
+            </tr>
+            <%
+                }
+            %>
             </tbody>
         </table>
     </div>
@@ -81,9 +91,21 @@
             <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <c:forEach begin="1" end="${pages}" var="pageNumber">
+                <li class="page-item">
+                    <c:url value="." var="pageLink">
+                        <c:param name="page" value="${pageNumber}"/>
+                    </c:url>
+                    <c:choose>
+                        <c:when test="${pageNumber == currentPage}">
+                            <span class="page-link">${pageNumber}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="page-link" href="${pageLink}">${pageNumber}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </li>
+            </c:forEach>
             <li class="page-item">
                 <a class="page-link" href="#">Next</a></li>
             </li>

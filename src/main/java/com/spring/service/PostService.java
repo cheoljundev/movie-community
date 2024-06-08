@@ -25,4 +25,7 @@ public class PostService {
         return postDTO.findAll();
     }
 
+    public int pages(int maxView){
+        return postDTO.pages(maxView);
+    }
 }

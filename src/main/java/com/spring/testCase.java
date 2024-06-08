@@ -22,48 +22,13 @@ public class testCase {
         member.setPassword("test");
         memberService.save(member);
 
-        Post post = new Post();
-        post.setTitle("테스트글");
-        post.setWriter(member);
-        post.setContent("test 글내용");
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
-        postService.save(post);
+
+        for (int i = 0; i < 33; i++) {
+            Post post = new Post();
+            post.setTitle("테스트글");
+            post.setWriter(member);
+            post.setContent("test 글내용");
+            postService.save(post);
+        }
     }
 }

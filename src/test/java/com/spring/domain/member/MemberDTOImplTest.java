@@ -1,5 +1,6 @@
 package com.spring.domain.member;
 
+import com.spring.dto.MemberDTOImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 

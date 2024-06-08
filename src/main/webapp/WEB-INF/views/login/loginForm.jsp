@@ -4,6 +4,14 @@
 <jsp:include page="/WEB-INF/layout/header.jsp">
     <jsp:param name="title" value="로그인"/>
 </jsp:include>
+
+<style>
+    .container{
+        max-width: 400px;
+        margin: 0 auto;
+    }
+</style>
+
 <div class="container">
     <div class="login-container">
         <h2 class="text-center mb-4">로그인</h2>

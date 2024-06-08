@@ -13,7 +13,12 @@
     .error{
         color: red;
     }
+    .container{
+        max-width: 400px;
+        margin: 0 auto;
+    }
 </style>
+
 
 <div class="container mt-5">
     <h2 class="mb-4">회원가입</h2>
@@ -33,7 +38,9 @@
             <form:input path="name" type="text" class="form-control" cssErrorClass="form-control error-input" />
             <form:errors path="name" cssClass="error"/>
         </div>
-        <button type="submit" class="btn btn-primary">가입하기</button>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary">가입하기</button>
+        </div>
     </form:form>
 </div>
 

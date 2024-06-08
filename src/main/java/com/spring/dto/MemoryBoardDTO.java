@@ -1,6 +1,6 @@
 package com.spring.dto;
 
-import com.spring.dao.post.Post;
+import com.spring.dao.board.Post;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-public class MemoryPostDTO implements PostDTO{
+public class MemoryBoardDTO implements BoardDTO {
 
     private static final Map<Integer, Post> store = new ConcurrentHashMap<>();
     Integer seq = 0;

@@ -1,10 +1,10 @@
 package com.spring.dto;
 
-import com.spring.dao.post.Post;
+import com.spring.dao.board.Post;
 
 import java.util.List;
 
-public interface PostDTO {
+public interface BoardDTO {
     Post save(Post post);
     Post remove(Integer id);
 

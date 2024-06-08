@@ -1,7 +1,7 @@
 package com.spring.service;
 
-import com.spring.dao.post.Post;
-import com.spring.dto.PostDTO;
+import com.spring.dao.board.Post;
+import com.spring.dto.BoardDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,29 +10,30 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PostService {
+public class BoardService {
 
-    private final PostDTO postDTO;
+    private final BoardDTO boardDTO;
     private final int MAX_VIEW = 10;
+    private final int PAGE_SIZE = 10;
 
     public Post save(Post post) {
-        return postDTO.save(post);
+        return boardDTO.save(post);
     }
 
     public Post remove(Integer id){
-        return postDTO.remove(id);
+        return boardDTO.remove(id);
     }
 
     private List<Post> findAll() {
-        return postDTO.findAll();
+        return boardDTO.findAll();
     }
 
     public int pages(){
-        return postDTO.pages(MAX_VIEW);
+        return boardDTO.pages(MAX_VIEW);
     }
 
     public Post findById(Integer id){
-        return postDTO.findById(id);
+        return boardDTO.findById(id);
     }
 
     public List<Post> findView(Integer page) {

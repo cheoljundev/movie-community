@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -18,18 +19,17 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/member/join">회원가입</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">로그인</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">로그아웃</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/board">게시판</a>
-                </li>
+                <c:choose>
+                    <c:when test="${sessionScope.loginMember == null}">
+                        <a class="nav-link" href="/login">로그인</a>
+                        <a class="nav-link" href="/member/join">회원가입</a>
+                    </c:when>
+                    <c:when test="${sessionScope.loginMember != null}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout">로그아웃</a>
+                        </li>
+                    </c:when>
+                </c:choose>
             </ul>
         </div>
     </div>

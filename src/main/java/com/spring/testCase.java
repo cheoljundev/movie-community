@@ -1,7 +1,9 @@
 package com.spring;
 
 import com.spring.dao.member.Member;
+import com.spring.dao.post.Post;
 import com.spring.service.MemberService;
+import com.spring.service.PostService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class testCase {
     private final MemberService memberService;
+    private final PostService postService;
 
     @PostConstruct
     void init() {
@@ -18,5 +21,11 @@ public class testCase {
         member.setName("tester");
         member.setPassword("test");
         memberService.save(member);
+
+        Post post = new Post();
+        post.setTitle("테스트글");
+        post.setWriter(member);
+        post.setContent("test 글내용");
+        postService.save(post);
     }
 }

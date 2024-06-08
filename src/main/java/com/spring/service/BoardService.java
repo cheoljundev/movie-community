@@ -14,7 +14,7 @@ public class BoardService {
 
     private final BoardDTO boardDTO;
     private final int MAX_VIEW = 10;
-    private final int PAGE_SIZE = 10;
+    public static final int PAGE_SIZE = 10;
 
     public Post save(Post post) {
         return boardDTO.save(post);
@@ -57,6 +57,13 @@ public class BoardService {
         }
 
         return viewPosts;
+    }
 
+    public int minPageLimit(Integer page){
+        return ((page - 1) / 10) * 10 + 1;
+    }
+
+    public int maxPageLimit(int minPageLimit){
+        return minPageLimit + PAGE_SIZE - 1;
     }
 }

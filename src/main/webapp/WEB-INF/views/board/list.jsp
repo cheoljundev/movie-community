@@ -16,16 +16,7 @@
     color: #0056b3;
     text-decoration: underline;
   }
-  .pagination .page-item.active .page-link {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  .pagination .page-link {
-    color: #007bff;
-  }
-  .pagination .page-link:hover {
-    color: #0056b3;
-  }
+
   .table {
     border-radius: 10px;
     overflow: hidden;
@@ -75,27 +66,45 @@
   </div>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-      </li>
-      <c:forEach begin="1" end="${pages}" var="pageNumber">
-        <li class="page-item">
-          <c:url value="" var="pageLink">
-            <c:param name="page" value="${pageNumber}"/>
-          </c:url>
-          <c:choose>
-            <c:when test="${pageNumber == currentPage}">
-              <span class="page-link">${pageNumber}</span>
-            </c:when>
-            <c:otherwise>
-              <a class="page-link" href="board${pageLink}">${pageNumber}</a>
-            </c:otherwise>
-          </c:choose>
-        </li>
+      <c:choose>
+        <c:when test="${minPage == 1}">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">이전</a>
+          </li>
+        </c:when>
+        <c:otherwise>
+          <li class="page-item">
+            <a class="page-link" href="board?page=${minPage - 1}" tabindex="-1">이전</a>
+          </li>
+        </c:otherwise>
+      </c:choose>
+      <c:forEach begin="${minPage}" end="${maxPage}" var="pageNumber">
+        <c:choose>
+          <c:when test="${currentPage == pageNumber}">
+            <li class="page-item active">
+              <a class="page-link" href="board?page=${pageNumber}">${pageNumber}</a>
+            </li>
+          </c:when>
+          <c:otherwise>
+            <li class="page-item">
+              <a class="page-link" href="board?page=${pageNumber}">${pageNumber}</a>
+            </li>
+          </c:otherwise>
+        </c:choose>
       </c:forEach>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a></li>
-      </li>
+      <c:choose>
+        <c:when test="${maxPage < pages}">
+          <li class="page-item">
+            <a class="page-link" href="board?page=${maxPage + 1}">다음</a></li>
+          </li>
+        </c:when>
+        <c:otherwise>
+          <li class="page-item">
+            <a class="page-link disabled" href="#">다음</a></li>
+          </li>
+        </c:otherwise>
+      </c:choose>
+
     </ul>
   </nav>
 </div>

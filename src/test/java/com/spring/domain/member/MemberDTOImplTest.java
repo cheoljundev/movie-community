@@ -1,11 +1,9 @@
 package com.spring.domain.member;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class MemberDTOImplTest {
     MemberDTOImpl memberDTO = new MemberDTOImpl();

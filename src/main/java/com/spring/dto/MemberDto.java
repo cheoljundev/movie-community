@@ -5,7 +5,7 @@ import com.spring.dao.member.Member;
 import java.util.List;
 import java.util.Optional;
 
-public interface MemberDTO {
+public interface MemberDto {
     Member save(Member member);
     Member findById(Long id);
     Optional<Member> findByUserId(String userid);

@@ -4,7 +4,7 @@ import com.spring.dao.board.Post;
 
 import java.util.List;
 
-public interface BoardDTO {
+public interface BoardDto {
     Post save(Post post);
     Post remove(Integer id);
 

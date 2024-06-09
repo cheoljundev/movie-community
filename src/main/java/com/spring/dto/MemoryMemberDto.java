@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-public class MemoryMemberDTO implements MemberDTO{
+public class MemoryMemberDto implements MemberDto {
 
     public static final Map<Long, Member> store = new ConcurrentHashMap<>();
     Long seq = 0L;

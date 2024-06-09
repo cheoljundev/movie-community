@@ -1,7 +1,7 @@
 package com.spring.service;
 
 import com.spring.dao.board.Post;
-import com.spring.dto.BoardDTO;
+import com.spring.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
 
-    private final BoardDTO boardDTO;
+    private final BoardDto boardDTO;
     private final int MAX_VIEW = 10;
     public static final int PAGE_SIZE = 10;
 

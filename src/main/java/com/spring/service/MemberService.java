@@ -1,7 +1,7 @@
 package com.spring.service;
 
 import com.spring.dao.member.Member;
-import com.spring.dto.MemberDTO;
+import com.spring.dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +10,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class MemberService {
-    private final MemberDTO memberDTO;
+    private final MemberDto memberDTO;
 
     public Member save(Member member) {
         return memberDTO.save(member);

@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
-public class MemoryBoardDTO implements BoardDTO {
+public class MemoryBoardDto implements BoardDto {
 
     private static final Map<Integer, Post> store = new ConcurrentHashMap<>();
     Integer seq = 0;

@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <jsp:include page="/WEB-INF/layout/header.jsp">
-  <jsp:param name="title" value="로그인"/>
+  <jsp:param name="title" value="${post.title}"/>
 </jsp:include>
 
 <div class="container mt-5">

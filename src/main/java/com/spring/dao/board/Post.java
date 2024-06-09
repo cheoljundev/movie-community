@@ -8,9 +8,11 @@ import java.util.Date;
 
 @Data
 public class Post {
-    Integer id;
-    String title;
-    String content;
-    Member writer;
-    Date date;
+    private Integer id;
+    private String title;
+    private String content;
+    private Member writer;
+    private Date date;
+    private String storeFileName;
+    private String fileName;
 }

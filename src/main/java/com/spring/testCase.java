@@ -23,12 +23,12 @@ public class testCase {
         memberService.save(member);
 
 
-        for (int i = 0; i < 300; i++) {
-            Post post = new Post();
-            post.setTitle("테스트글");
-            post.setWriter(member);
-            post.setContent("test 글내용");
-            boardService.save(post);
-        }
+//        for (int i = 0; i < 300; i++) {
+//            Post post = new Post();
+//            post.setTitle("테스트글");
+//            post.setWriter(member);
+//            post.setContent("test 글내용");
+//            boardService.save(post);
+//        }
     }
 }

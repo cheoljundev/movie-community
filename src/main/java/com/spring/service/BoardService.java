@@ -2,12 +2,18 @@ package com.spring.service;
 
 import com.spring.constant.BoardConst;
 import com.spring.dao.board.Post;
+import com.spring.dao.board.PostForm;
 import com.spring.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +21,30 @@ public class BoardService {
 
     private final BoardDto boardDto;
 
-    public Post save(Post post) {
+    @Value("${file.dir}")
+    String fileDir;
+
+    public Post save(PostForm postForm) throws IOException {
+        MultipartFile file = postForm.getFile();
+        Post post = new Post();
+
+        if (!file.isEmpty()) {
+            String filename = file.getOriginalFilename();
+            String uuid = UUID.randomUUID().toString();
+            int extIndex = filename.lastIndexOf(".") + 1;
+            String ext = filename.substring(extIndex);
+            String storeFileName = uuid + "." + ext;
+            post.setFileName(filename);
+            post.setStoreFileName(storeFileName);
+            String fullPathUrl = fileDir + storeFileName;
+            file.transferTo(new File(fullPathUrl));
+        }
+
+        post.setTitle(postForm.getTitle());
+        post.setWriter(postForm.getWriter());
+        post.setContent(postForm.getContent());
+
+
         return boardDto.save(post);
     }
 

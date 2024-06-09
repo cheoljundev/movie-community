@@ -1,14 +1,21 @@
 package com.spring.web.board;
 
 import com.spring.dao.board.Post;
+import com.spring.dao.board.PostForm;
 import com.spring.dao.member.Member;
 import com.spring.service.BoardService;
 import com.spring.web.SessionConst;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 @Controller
@@ -17,6 +24,9 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+
+    @Value("${file.dir}")
+    String fileDir;
 
     @GetMapping
     public String list(@RequestParam(value = "page", required = false) Integer page, Model model) {
@@ -36,7 +46,9 @@ public class BoardController {
         model.addAttribute("minPage", min);
         model.addAttribute("maxPage", max);
 
-        if (page > pages) {
+        if (page == 1) {
+            return "/board/list";
+        }else if (page > pages) {
             return "redirect:/";
         }
 
@@ -51,6 +63,7 @@ public class BoardController {
         post.setWriter(findPost.getWriter());
         post.setDate(findPost.getDate());
         post.setContent(findPost.getContent());
+        post.setStoreFileName(findPost.getStoreFileName());
         return "/board/detail";
     }
 
@@ -60,9 +73,15 @@ public class BoardController {
     }
 
     @PostMapping("/write")
-    public String write(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, @ModelAttribute(name = "post") Post post) {
-        post.setWriter(loginMember);
-        boardService.save(post);
-        return "redirect:/board/" + post.getId();
+    public String write(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, @ModelAttribute(name = "post") PostForm postForm) throws IOException {
+        postForm.setWriter(loginMember);
+        boardService.save(postForm);
+        return "redirect:/board";
+    }
+
+    @GetMapping("/image/{fileName}")
+    @ResponseBody
+    public Resource downloadImage(@PathVariable("fileName") String fineName) throws MalformedURLException {
+        return new UrlResource("file:" + fileDir + fineName);
     }
 }

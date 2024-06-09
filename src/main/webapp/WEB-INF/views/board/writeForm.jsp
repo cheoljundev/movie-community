@@ -16,10 +16,10 @@
       <label for="content" class="form-label">내용</label>
       <textarea path="content" class="form-control" id="content" name="content" rows="5" required></textarea>
     </div>
-<%--    <div class="mb-3">--%>
-<%--      <label for="file" class="form-label">첨부파일</label>--%>
-<%--      <input type="file" class="form-control-file" id="file" name="file">--%>
-<%--    </div>--%>
+    <div class="mb-3">
+      <label for="file" class="form-label">첨부파일</label>
+      <input type="file" class="form-control-file" id="file" name="file">
+    </div>
     <div class="d-grid gap-2">
       <button type="submit" class="btn btn-primary">글쓰기</button>
     </div>

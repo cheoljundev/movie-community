@@ -17,6 +17,7 @@ public class MemoryBoardDto implements BoardDto {
         post.setId(++seq);
         post.setDate(new Date());
         store.put(post.getId(), post);
+        System.out.println("findAll() = " + findAll());
         return post;
     }
 

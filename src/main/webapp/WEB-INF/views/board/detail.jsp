@@ -31,6 +31,7 @@
   <div class="card mt-4">
     <div class="card-body">
       <div class="row">
+        <img src="/board/image/${post.storeFileName}" alt="Uploaded image"/>
         <div class="col-md-9">
           <p>${post.content}</p>
         </div>

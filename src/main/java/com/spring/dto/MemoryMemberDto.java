@@ -3,16 +3,13 @@ package com.spring.dto;
 import com.spring.dao.member.Member;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class MemoryMemberDto implements MemberDto {
 
-    public static final Map<Long, Member> store = new ConcurrentHashMap<>();
+    public static final Map<Long, Member> store = new HashMap<>();
     Long seq = 0L;
 
     @Override

@@ -36,6 +36,10 @@ public class BoardController {
         model.addAttribute("minPage", min);
         model.addAttribute("maxPage", max);
 
+        if (page > pages) {
+            return "redirect:/";
+        }
+
         return "/board/list";
     }
 

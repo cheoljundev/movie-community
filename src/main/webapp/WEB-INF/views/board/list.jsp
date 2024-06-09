@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="/WEB-INF/layout/header.jsp">
   <jsp:param name="title" value="영화리뷰 게시판"/>
 </jsp:include>
@@ -59,7 +60,7 @@
           <td>${post.id}</td>
           <td><a href="board/${post.id}">${post.title}</a></td>
           <td>${post.writer.name}</td>
-          <td>${post.date}</td>
+          <td><fmt:formatDate value="${post.date}" pattern="yyyy년 MM월 dd일" /></td>
         </tr>
       </c:forEach>
     </table>
@@ -107,6 +108,13 @@
 
     </ul>
   </nav>
+  <c:choose>
+    <c:when test="${sessionScope.loginMember != null}">
+      <div class="text-right mt-4">
+        <a href="board/write" class="btn btn-primary">글쓰기</a>
+      </div>
+    </c:when>
+  </c:choose>
 </div>
 
 <%@include file="/WEB-INF/layout/footer.jsp"%>

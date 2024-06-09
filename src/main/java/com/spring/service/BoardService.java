@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import com.spring.constant.BoardConst;
 import com.spring.dao.board.Post;
 import com.spring.dto.BoardDto;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,6 @@ import java.util.List;
 public class BoardService {
 
     private final BoardDto boardDto;
-    private final int MAX_VIEW = 10;
-    public static final int PAGE_SIZE = 10;
 
     public Post save(Post post) {
         return boardDto.save(post);
@@ -29,7 +28,7 @@ public class BoardService {
     }
 
     public int pages(){
-        return boardDto.pages(MAX_VIEW);
+        return boardDto.pages(BoardConst.MAX_VIEW);
     }
 
     public Post findById(Integer id){
@@ -38,17 +37,13 @@ public class BoardService {
 
     public List<Post> findView(Integer page) {
         List<Post> allPosts = findAll();
-        System.out.println("allPosts = " + allPosts);
 
         if (page == null){
             page = 1;
         }
 
-        int startIndex = (page - 1) * MAX_VIEW + 1;
-        int endIndex = page * MAX_VIEW;
-
-        System.out.println("startIndex = " + startIndex);
-        System.out.println("endIndex = " + endIndex);
+        int startIndex = (page - 1) * BoardConst.MAX_VIEW + 1;
+        int endIndex = page * BoardConst.MAX_VIEW;
 
         if (allPosts.size() <= endIndex) {
             endIndex = allPosts.size();
@@ -56,17 +51,9 @@ public class BoardService {
 
         List<Post> viewPosts = new ArrayList<>();
 
-        System.out.println("viewPosts = " + viewPosts);
-
-
         for (int i = startIndex; i <= endIndex; i++) {
             viewPosts.add(allPosts.get(i-1));
         }
-
-
-        System.out.println("viewPosts2 = " + viewPosts);
-
-
 
         return viewPosts;
     }
@@ -76,6 +63,13 @@ public class BoardService {
     }
 
     public int maxPageLimit(int minPageLimit){
-        return minPageLimit + PAGE_SIZE - 1;
+        int result = minPageLimit + BoardConst.PAGE_SIZE - 1;
+        int pages = pages();
+
+        if (result > pages){
+            return pages;
+        }
+
+        return result;
     }
 }

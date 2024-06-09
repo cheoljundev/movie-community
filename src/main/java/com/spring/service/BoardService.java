@@ -12,28 +12,28 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
 
-    private final BoardDto boardDTO;
+    private final BoardDto boardDto;
     private final int MAX_VIEW = 10;
     public static final int PAGE_SIZE = 10;
 
     public Post save(Post post) {
-        return boardDTO.save(post);
+        return boardDto.save(post);
     }
 
     public Post remove(Integer id){
-        return boardDTO.remove(id);
+        return boardDto.remove(id);
     }
 
     private List<Post> findAll() {
-        return boardDTO.findAll();
+        return boardDto.findAll();
     }
 
     public int pages(){
-        return boardDTO.pages(MAX_VIEW);
+        return boardDto.pages(MAX_VIEW);
     }
 
     public Post findById(Integer id){
-        return boardDTO.findById(id);
+        return boardDto.findById(id);
     }
 
     public List<Post> findView(Integer page) {

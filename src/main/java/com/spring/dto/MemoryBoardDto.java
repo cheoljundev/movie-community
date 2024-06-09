@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Repository
 public class MemoryBoardDto implements BoardDto {
 
     private static final Map<Integer, Post> store = new HashMap<>();

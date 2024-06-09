@@ -3,16 +3,13 @@ package com.spring.dto;
 import com.spring.dao.board.Post;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class MemoryBoardDto implements BoardDto {
 
-    private static final Map<Integer, Post> store = new ConcurrentHashMap<>();
+    private static final Map<Integer, Post> store = new HashMap<>();
     Integer seq = 0;
 
     @Override

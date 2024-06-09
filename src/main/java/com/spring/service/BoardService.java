@@ -38,6 +38,7 @@ public class BoardService {
 
     public List<Post> findView(Integer page) {
         List<Post> allPosts = findAll();
+        System.out.println("allPosts = " + allPosts);
 
         if (page == null){
             page = 1;
@@ -46,15 +47,26 @@ public class BoardService {
         int startIndex = (page - 1) * MAX_VIEW + 1;
         int endIndex = page * MAX_VIEW;
 
+        System.out.println("startIndex = " + startIndex);
+        System.out.println("endIndex = " + endIndex);
+
         if (allPosts.size() <= endIndex) {
-            endIndex = allPosts.size()-1;
+            endIndex = allPosts.size();
         }
 
         List<Post> viewPosts = new ArrayList<>();
 
+        System.out.println("viewPosts = " + viewPosts);
+
+
         for (int i = startIndex; i <= endIndex; i++) {
             viewPosts.add(allPosts.get(i-1));
         }
+
+
+        System.out.println("viewPosts2 = " + viewPosts);
+
+
 
         return viewPosts;
     }

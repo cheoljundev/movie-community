@@ -1,7 +1,9 @@
 package com.spring.web.board;
 
 import com.spring.dao.board.Post;
+import com.spring.dao.member.Member;
 import com.spring.service.BoardService;
+import com.spring.web.SessionConst;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,5 +48,17 @@ public class BoardController {
         post.setDate(findPost.getDate());
         post.setContent(findPost.getContent());
         return "/board/detail";
+    }
+
+    @GetMapping("/write")
+    public String writeForm(@ModelAttribute("post") Post post) {
+        return "/board/writeForm";
+    }
+
+    @PostMapping("/write")
+    public String write(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member loginMember, @ModelAttribute(name = "post") Post post) {
+        post.setWriter(loginMember);
+        boardService.save(post);
+        return "redirect:/board/" + post.getId();
     }
 }

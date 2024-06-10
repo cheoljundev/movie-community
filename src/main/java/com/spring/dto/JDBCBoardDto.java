@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static com.spring.dto.JDBCUtil.getConnection;
 import static com.spring.dto.JDBCUtil.rollback;
@@ -83,7 +84,7 @@ public class JDBCBoardDto implements BoardDto{
              PreparedStatement pstmt = conn.prepareStatement(query)){
             conn.setAutoCommit(false);
             ResultSet rs = pstmt.executeQuery();
-            while(rs.next()) {
+            if(rs.next()) {
                 post.setId(rs.getInt(ID_COLUMN));
                 post.setTitle(rs.getString(TITLE_COLUMN));
                 post.setContent(rs.getString(CONTENT_COLUMN));
@@ -91,6 +92,8 @@ public class JDBCBoardDto implements BoardDto{
                 post.setDate(rs.getDate(DATE_COLUMN));
                 post.setStoreFileName(rs.getString(STORE_FILE_NAME_COLUMN));
                 post.setFileName(rs.getString(FILE_NAME_COLUMN));
+            } else {
+                throw new NoSuchElementException("게시글을 찾을 수 없습니다. boardId=" + id);
             }
         } catch (SQLException e) {
             e.printStackTrace();

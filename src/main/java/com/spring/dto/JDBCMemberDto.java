@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static com.spring.dto.JDBCUtil.getConnection;
@@ -24,7 +25,6 @@ public class JDBCMemberDto implements MemberDto{
     @Override
     public Member save(Member member) {
         String query = "INSERT INTO " + TABLE_NAME + " (" + ID_COLUMN + ", " + USERID_COLUMN + ", " + PASSWORD_COLUMN + ", " + NAME_COLUMN + ") VALUES (SEQ_USER.NEXTVAL, ?, ?, ?)";
-        // String idQuery = "SELECT SEQ_USER.CURRVAL FROM DUAL";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)){
@@ -51,11 +51,13 @@ public class JDBCMemberDto implements MemberDto{
             conn.setAutoCommit(false);
             pstmt.setLong(1, id);
             ResultSet rs = pstmt.executeQuery();
-            while(rs.next()) {
+            if(rs.next()) {
                 member.setId(rs.getLong(ID_COLUMN));
                 member.setUserId(rs.getString(USERID_COLUMN));
                 member.setPassword(rs.getString(PASSWORD_COLUMN));
                 member.setName(rs.getString(NAME_COLUMN));
+            } else {
+                throw new NoSuchElementException("유저를 찾을 수 없습니다. memberId=" + id);
             }
         } catch (SQLException e) {
             e.printStackTrace();

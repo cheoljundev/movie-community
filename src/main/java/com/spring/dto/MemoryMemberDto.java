@@ -25,10 +25,10 @@ public class MemoryMemberDto implements MemberDto {
     }
 
     @Override
-    public Optional<Member> findByUserId(String userid) {
+    public Member findByUserId(String userid) {
         return findAll().stream()
                 .filter(member -> member.getUserId().equals(userid))
-                .findFirst();
+                .findFirst().get();
     }
 
     @Override

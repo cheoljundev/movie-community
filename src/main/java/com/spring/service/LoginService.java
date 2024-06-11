@@ -11,7 +11,10 @@ public class LoginService {
     private final MemberDto memberDTO;
 
     public Member login(String loginId, String password) {
-        return memberDTO.findByUserId(loginId).filter(member -> member.getPassword().equals(password))
-                .orElse(null);
+        Member loginMember = memberDTO.findByUserId(loginId);
+        if (loginMember.getPassword().equals(password)) {
+            return loginMember;
+        }
+        return null;
     }
 }

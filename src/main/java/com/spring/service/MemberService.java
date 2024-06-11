@@ -20,7 +20,7 @@ public class MemberService {
         return memberDTO.findById(id);
     }
 
-    public Optional<Member> findByUserId(String userId) {
+    public Member findByUserId(String userId) {
         return memberDTO.findByUserId(userId);
     }
 }

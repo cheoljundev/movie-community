@@ -28,6 +28,9 @@ dependencies {
 	//JSP 추가 시작
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 //	implementation 'javax.servlet:jstl'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+
 
 	implementation 'jakarta.servlet:jakarta.servlet-api'
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
@@ -41,7 +44,6 @@ dependencies {
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation 'com.oracle.database.jdbc:ojdbc8:21.9.0.0'
 }
 
 tasks.named('test') {

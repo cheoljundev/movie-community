@@ -10,7 +10,6 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static com.spring.dto.JDBCUtil.getConnection;
-import static com.spring.dto.JDBCUtil.rollback;
 
 @Repository
 public class JDBCMemberDto implements MemberDto{
@@ -28,14 +27,12 @@ public class JDBCMemberDto implements MemberDto{
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)){
-            conn.setAutoCommit(false);
             pstmt.setString(1, member.getUserId());
             pstmt.setString(2, member.getPassword());
             pstmt.setString(3, member.getName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            rollback();
         }
 
         return findByUserId(member.getUserId()).get();
@@ -48,7 +45,6 @@ public class JDBCMemberDto implements MemberDto{
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)){
-            conn.setAutoCommit(false);
             pstmt.setLong(1, id);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
@@ -61,7 +57,6 @@ public class JDBCMemberDto implements MemberDto{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            rollback();
         }
         return member;
     }
@@ -81,7 +76,6 @@ public class JDBCMemberDto implements MemberDto{
         String query = "SELECT * FROM USERS";
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)){
-            conn.setAutoCommit(false);
             pstmt.executeUpdate();
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
@@ -94,7 +88,6 @@ public class JDBCMemberDto implements MemberDto{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            rollback();
         }
         return list;
     }

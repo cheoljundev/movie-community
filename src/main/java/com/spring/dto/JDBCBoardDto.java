@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static com.spring.dto.JDBCUtil.getConnection;
-import static com.spring.dto.JDBCUtil.rollback;
 
 @Repository
 @RequiredArgsConstructor
@@ -38,7 +37,6 @@ public class JDBCBoardDto implements BoardDto{
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)){
-            conn.setAutoCommit(false);
             pstmt.setString(1, post.getTitle());
             pstmt.setString(2, post.getContent());
             pstmt.setLong(3, post.getWriter().getId());
@@ -48,7 +46,6 @@ public class JDBCBoardDto implements BoardDto{
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            rollback();
         }
 
         return post;
@@ -68,7 +65,6 @@ public class JDBCBoardDto implements BoardDto{
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            rollback();
         }
 
         return post;
@@ -82,7 +78,6 @@ public class JDBCBoardDto implements BoardDto{
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)){
-            conn.setAutoCommit(false);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()) {
                 post.setId(rs.getInt(ID_COLUMN));
@@ -97,7 +92,6 @@ public class JDBCBoardDto implements BoardDto{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            rollback();
         }
 
         return post;
@@ -124,7 +118,6 @@ public class JDBCBoardDto implements BoardDto{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            rollback();
         }
 
         return list;
